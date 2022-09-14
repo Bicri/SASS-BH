@@ -360,8 +360,6 @@ a {
 }
 
 img {
-  max-width: 100%;
-  height: auto;
   display: block;
 }
 
@@ -522,5 +520,32 @@ ul {
 .hamburguer__btn--collapsed::after {
   -webkit-transform: rotate(-45deg) translate(35px, 35px);
           transform: rotate(-45deg) translate(35px, 35px);
+}
+
+.carousel__slider {
+  width: 100%;
+  position: relative;
+  height: 88vh;
+  overflow: hidden;
+}
+.carousel__slide {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  transition-property: -webkit-transform;
+  transition-property: transform;
+  transition-property: transform, -webkit-transform;
+  transition-duration: 0.5s;
+  transition-timing-function: ease;
+}
+.carousel__slide:not(.carousel__slide:first-of-type) {
+  -webkit-transform: translateX(100%);
+          transform: translateX(100%);
+}
+.carousel__img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 /*# sourceMappingURL=app.css.map */

@@ -1,0 +1,38 @@
+
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+$altura: 85vh;
+
+.carousel{
+
+
+    &__slider{
+        width: 100%;
+        position: relative;
+        height: 88vh;
+        overflow: hidden;
+
+    }
+
+
+    &__slide{
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        transition-property: transform;
+        transition-duration: 0.5s;
+        transition-timing-function: ease;
+        
+        &:not(&:first-of-type){
+            transform: translateX(100%);
+        }
+    }
+
+    &__img{
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
+
+}

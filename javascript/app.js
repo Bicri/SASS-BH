@@ -16,7 +16,7 @@
         setAltura(header, getAltura(header));
         
         //Carousel
-        //reproducirSlides(); //automaticamente  
+        reproducirSlides(); //automaticamente  
     }
 
     function menu(){
@@ -49,43 +49,31 @@
 
 //-- SECCION DEL CAROUSEL ---------------------------------------
 
-//     const slides = document.querySelectorAll('.carousel__slide');
-//     const next = document.querySelector(".carousel__next");
-//     const prev = document.querySelector(".carousel__prev");
-
-//     let slideActual = 0;
-//     let slidesTotal = slides.length - 1 ;
-
-//     next.addEventListener("click", siguienteImagen);
-//     prev.addEventListener("click", anteriorImagen);
+    const slides = document.querySelectorAll('.carousel__slide');
 
 
+    let slideActual = 0;
+    let slidesTotal = slides.length - 1 ;
 
-//     function anteriorImagen(){
 
-//         slideActual = slideActual === 0 ? slidesTotal : slideActual-1;
+    function siguienteImagen(){
 
-//         moverCarousel(slides, 100, slideActual);
-//     }
+        slideActual = slideActual === slidesTotal ? 0 : slideActual+1;
 
-//     function siguienteImagen(){
+        moverCarousel(slides, 100, slideActual);
+    }
 
-//         slideActual = slideActual === slidesTotal ? 0 : slideActual+1;
+    function moverCarousel(carousel, tamX, posicionActual){
+        carousel.forEach( (slide, i) => {
+            slide.style.transform = `translateX(${(tamX * (i-posicionActual))}%)`;
+        } )
+    }
 
-//         moverCarousel(slides, 100, slideActual);
-//     }
-
-//     function moverCarousel(carousel, tamX, posicionActual){
-//         carousel.forEach( (slide, i) => {
-//             slide.style.transform = `translateX(${(tamX * (i-posicionActual))}%)`;
-//         } )
-//     }
-
-//     function reproducirSlides(){
-//         setInterval(() => {
-//             siguienteImagen();
-//         }, 3500);
-//     }
+    function reproducirSlides(){
+        setInterval(() => {
+            siguienteImagen();
+        }, 3500);
+    }
 
 
 // //-- FIN CAROUSEL -----------------------------------------------
