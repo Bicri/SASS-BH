@@ -13,8 +13,8 @@
     }
 }
 
-@mixin desktop {
-    @media (min-width: v.$desktop){
+@mixin laptop {
+    @media (min-width: v.$laptop){
         @content;
     }
 }

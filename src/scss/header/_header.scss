@@ -1,0 +1,37 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.header{
+    padding: 1.3rem 0;
+    background-color: v.$negroGris;
+    transition: height 1s ease;
+
+    @include m.tablet {
+        height: auto !important;
+
+        &__contenedor{
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+
+    &__contenido{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+
+    }
+
+    &__img{
+        height: 80px;
+        width: 95px;
+        border-radius: 10%;
+
+        @include m.tablet {
+            height: 60px;
+            width: 60px;
+        }
+    }
+}
