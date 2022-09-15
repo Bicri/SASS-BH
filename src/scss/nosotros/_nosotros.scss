@@ -1,0 +1,91 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.nosotros{
+    padding: 10rem 0 2rem 0;
+    background-image: url("../img/bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+    &__header{
+        font-size: 5.5rem;
+        text-align: center;
+        padding: 0;
+        margin: 0 0 4rem 0;
+
+        @include m.tablet {
+            font-size: 9rem;
+        }
+    }
+
+    &__BH{
+        @include m.laptop {
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 2rem;
+        }
+    }
+
+    &__titulo{
+        font-size: 2rem;
+        margin: 0 0 1rem 0;
+        text-align: center;
+
+        span{
+            display: block;
+        }
+
+        @include m.tablet {
+            font-size: 3rem;
+        }
+    }
+
+    &__texto{
+        margin: 1rem 0;
+    }
+
+    &__collage {
+        @include m.laptop {
+            width: 150%;
+        }
+        
+        img{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    }
+
+    &__ivonne{
+        margin-top: 5rem;
+        @include m.laptop {
+            display: flex;
+            gap: 2rem;
+        }
+
+        & p{
+            @include m.laptop {
+                text-align: right;
+            }
+        }
+    }
+
+    &__imagen{
+        height: 50rem;
+
+        @include m.laptop {
+            height: auto;
+        }
+
+        img{
+            margin: 0 auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            width: 100%;
+            max-width: 59rem;
+
+            @include m.laptop {
+                max-width: 650rem;
+            }
+        }
+    }
+}

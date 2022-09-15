@@ -5,6 +5,11 @@
     padding: 1.3rem 0;
     background-color: v.$negroGris;
     transition: height 1s ease;
+    position: sticky;
+    left: 0;
+    top: 0;
+    right: 0;
+    z-index: 10;
 
     @include m.tablet {
         height: auto !important;
