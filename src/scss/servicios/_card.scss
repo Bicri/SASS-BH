@@ -1,0 +1,50 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+
+
+.card{
+    background-color: white;
+    flex: 0 0 auto;
+    margin-left: 15px;
+    max-width: 100%;
+    padding: 2rem;
+    height: v.$altura;
+    margin-bottom: 1rem;
+
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+
+
+    &:last-child{
+        margin-right: 15px;
+    }
+
+    @include m.tablet {
+        max-width: 49%;
+    }
+
+    @include m.laptop{
+        max-width: 42rem;
+    }
+
+    &__header{
+        height: 50%;
+    }
+
+    &__img{
+        max-width: 300px;
+        margin: 0 auto;
+        border-radius: 50%;
+    }
+
+    &__titulo{
+        margin: 2rem 0;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    &__texto{
+        margin: 0;
+        line-height: 1.5;
+    }
+}

@@ -19,8 +19,22 @@
     }
 }
 
-@mixin grid($columnas, $sep) {
-    display: grid;
-    grid-template-columns: repeat($columnas, 1fr);
-    gap: $sep;
+@mixin boton() {
+    position: relativate;
+    border: 2px solid #9b84ab;
+    padding: 20px 80px;
+    color: v.$blanco;
+    text-decoration: none;
+    background: #9b84ab;
+    transition: color 0.5s, background 0.5s;
+    border-radius: 30px;
+    font-size: 30px;
+    font-weight: bold;
+    min-width: 140px;
+    text-align: center;
+
+    &:hover{
+        color: v.$purpuraStrong;
+        background-color: v.$blanco;
+    }
 }

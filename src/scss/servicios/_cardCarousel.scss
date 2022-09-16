@@ -1,0 +1,56 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+
+.cardCarousel{
+    position: relative;
+
+    &__container{
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none;
+
+        width: 100%;
+        -webkit-overflow-scrolling: touch;
+        scroll-behavior: smooth;
+
+
+        &::-webkit-scrollbar{
+            display: none;
+        }
+
+    }
+
+    &__boton{
+        height: 38px;
+        width: 38px;
+        color: white;
+        background-color: #00000089;
+        border-radius: 50%;
+        border: 0px solid;
+        margin: auto;
+        position: absolute;
+        z-index: 1;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor:pointer;
+
+        & img{
+            width: 10px;
+        }
+
+        &--prev{
+            top: 45%;
+           
+        }
+
+        &--next{
+            top: 45%;
+            right: 0;
+            
+        }
+    }
+}
