@@ -18,6 +18,11 @@
         @content;
     }
 }
+@mixin desktop {
+    @media (min-width: v.$desktop){
+        @content;
+    }
+}
 
 @mixin boton() {
     position: relativate;

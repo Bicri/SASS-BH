@@ -46,5 +46,47 @@
     &__texto{
         margin: 0;
         line-height: 1.5;
+
+        &--credenciales{
+            display: flex;
+            flex-direction: column;
+            span{
+                font-size: 14.5px;
+            }
+        }
+    }
+
+    
+
+//---Cards en servicios integrales
+    &--integrales{
+        height: 85rem;
+        margin-left: 0;
+        max-width: 100%;
+
+        &:last-of-type{
+            margin-right: 0;
+        }
+
+        &__header{
+            height: 45%;
+            max-height: 320px;
+        }
+
+        &__img{
+            max-width: 320px;
+        }
+
+        & p{
+            margin: 0 0 1rem 0;
+            font-size: 14.5px;
+        }
+
+        &__titulo{
+            text-align: left;
+        }
+
+        
+
     }
 }
