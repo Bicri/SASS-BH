@@ -1,0 +1,32 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.contacto{
+    background-color: v.$primario;
+    padding: 10rem 0;
+
+    &__header{
+        margin: 0 0 3rem 0;
+    }
+
+    &__subtitulo{
+        text-align: center;
+        margin: 0 0 2rem 0;
+    }
+
+    &__about{
+        margin: 0 0 5rem 0;
+    }
+
+    &__grid{
+        @include m.tablet {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+    }
+
+    &__sociales{
+        margin-top: 5rem;
+    }
+}

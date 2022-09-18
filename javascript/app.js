@@ -161,7 +161,126 @@ function moverIzqCards(elem, unit) {
     });
 
     
-//--------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------------------------
+
+//--- INICIO FORMULARIO ----------------------------------------------------------------------------------------------
+
+const formulario = document.querySelector('#formulario');
+const emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
+const numerosRegex = /^[0-9]$/; //Solo valida caracter NO PALABRAS
+let presionado = false; //sirve para validar solo 1 vez los mensajes de error en cada input
+
+formulario.addEventListener('submit', enviarFormulario);
+
+formulario.addEventListener('input', validarTiempoReal);
+
+formulario.addEventListener('click', ()=>{
+    presionado = true; //Cambiaste de input --> valida
+});
+
+formulario.addEventListener("keydown", (e) =>{
+    if(e.keyCode === 9){ //Tecla tab
+        presionado = true; //Cambiaste de input --> valida
+    }   
+})
+
+function enviarFormulario(e){
+    e.preventDefault();
+
+    //Obtener todos los inputs del form
+    const datos = Object.fromEntries(new FormData(e.target));
+
+    if(validarDatos(datos)){ //Si error existe --> no enviar form
+        return;
+    }
+
+    console.log(datos);
+}
+
+function validarDatos(datos){
+    let error = false;
+
+    //Recorrer todo el objeto para identificar TODOS los errores
+    Object.entries(datos).forEach( ([key, valor]) =>{
+        if(valor === '' && key !== "comentario"){
+            crearSpan(key, "Dato requerido *");
+            error = true
+        }
+        if(key === 'email' && valor !== ''){
+            
+            if(!emailRegex.test(valor)){
+                crearSpan(key, "Correo no válido *");
+                error = true;
+            }
+        }
+        if(key === "telefono" && valor.length < 10 && valor !== ""){
+            crearSpan(key, "Formato a 10 dígitos *")
+            error = true;
+        }
+    });
+
+    return error;
+}
+
+
+function validarTiempoReal(e){
+
+    //Si el input de escritura es telefono, solo aceptar numeros
+    if(e.target.id === "telefono"){
+        recortarAnumeros(e)
+    }
+
+    /*
+    Al escribir muchas veces EN UN MISMO INPUT intentará validar
+    el mensaje de error. Esto solo es necesario una vez cada que escribe
+    en un input
+    */
+    if(!presionado) return; //Estas escribiendo muchas veces en un mismo input, no valides
+
+    const actual = e.target;
+    const padre = actual.parentNode;
+    const last = padre.lastElementChild;
+
+    //El mensaje de error siempre estará al final en un SPAN
+    if(last.tagName ==="SPAN"){
+
+        //Si es el input de telefono --> no quitar mensaje si no presiona numeros
+        if(actual.id === "telefono" && !soloNumeros(e.data)){
+            return;
+        }
+        last.remove();
+        // console.log("Comprobacion de variable presionado");
+    }
+
+    presionado = false; //Asegura de convertir a falso para no validar de nuevo el input actual
+}
+
+function crearSpan(key, texto){
+
+    //Obtiene al padre del input en cuestion
+    const padre = document.querySelector(`#${key}`).parentNode;
+
+    //Si no es un SPAN --> crear SPAN (el error)
+    if(padre.lastElementChild.tagName !== "SPAN"){
+        const span = document.createElement("span");
+        span.textContent = texto;
+        document.querySelector(`#${key}`).insertAdjacentElement("afterend", span);
+    }else{
+        //Si hay un SPAN, actualiza su texto. El SPAN siempre será el último elemento
+        padre.lastElementChild.textContent = texto;
+    }
+}
+
+function recortarAnumeros(e){
+    if(!(soloNumeros(e.data))){
+        //Si la tecla presionada no es de un numero --> recortala
+        e.target.value = e.target.value.slice(0, e.target.value.length - 1);     
+    }
+}
+
+function soloNumeros(caracter){
+    return numerosRegex.test(caracter);
+}
 
 
 

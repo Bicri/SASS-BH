@@ -50,7 +50,7 @@
             </div>
     
             <nav class="nav">
-                    <a href="#" class="nav__link">Inicio</a>
+                    <a href="index.html" class="nav__link">Inicio</a>
                     <a href="#nosotros" class="nav__link">Nosotros</a>
                     <a href="#servicios" class="nav__link">Servicios</a>
                     <a href="#integrales" class="nav__link">integrales</a>
@@ -115,7 +115,7 @@
 
             <div class="nosotros__ivonne">
                 <div class="nosotros__contenido">
-                    <h3 class="nosotros__titulo">Dra. Ivonne Hernández González <span>Cédula: 4844417</span> </h3>
+                    <h2 class="nosotros__titulo">Dra. Ivonne Hernández González <span>Cédula: 4844417</span> </h2>
                     <p class="nosotros__texto">
                         <span> Medico Cirujano y Partero</span>
                         <span>Escuela Superior De Medicina IPN</span>
@@ -779,6 +779,45 @@
         </div>
     </section>
 
+    <section class="contacto" id="contacto">
+        <div class="contacto__contenedor">
+            <h2 class="contacto__header">Contacto</h2>
+            <h3 class="contacto__subtitulo">¡Reembolso en tu primer tratamiento!</h3>
+            <p class="contacto__about">Ponte en contacto con nosotros para poder agendar cita por primera vez, en caso de que adquieras cualquiera de nuestros servicios, se te hará un reembolso del costo de la cita en cualquiera de nuestros tratamientos</p>
+            <div class="contacto__grid">
+
+                <form class="formulario" id="formulario" autocomplete="off" novalidate>
+                    <div class="formulario__dato">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" name="nombre" id="nombre" class="formulario__input" maxlength="40">
+                    </div>
+                    <div class="formulario__dato">
+                        <label for="telefono">Teléfono</label>
+                        <input type="tel" name="telefono" id="telefono" class="formulario__input" maxlength="10">
+                    </div>
+                    <div class="formulario__dato">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="formulario__input" maxlength="50">
+                    </div>
+                    <div class="formulario__dato">
+                        <label for="comentario">Comentario</label>
+                        <textarea name="comentario" id="comentario" cols="20" rows="5" class="formulario__input" maxlength="100"></textarea>
+                    </div>
+
+                    <input type="submit" value="Enviar" id="enviar" class="formulario__submit">
+                </form>
+
+                <div class="contacto__sociales">
+                    <a href="#" class="contacto__link">Ubicacion</a>
+                    <a href="#" class="contacto__link">WhatsApp</a>
+                    <a href="#" class="contacto__link">Teléfono</a>
+                    <a href="#" class="contacto__link">Correo</a>
+                    <a href="#" class="contacto__link">Facebook</a>
+                    <a href="#" class="contacto__link">Instagram</a>
+                </div>
+            </div>
+        </div>
+    </section>
     <script src="javascript/app.js"></script>
 </body>
 </html>
