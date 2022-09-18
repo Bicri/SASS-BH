@@ -248,6 +248,7 @@ function validarTiempoReal(e){
         if(actual.id === "telefono" && !soloNumeros(e.data)){
             return;
         }
+        //Remueve mensaje de error cuando escribe
         last.remove();
         // console.log("Comprobacion de variable presionado");
     }
@@ -264,9 +265,13 @@ function crearSpan(key, texto){
     if(padre.lastElementChild.tagName !== "SPAN"){
         const span = document.createElement("span");
         span.textContent = texto;
+        /**
+         * 1 obtener el input el cual su id es el mismo que el key del objeto
+         * 2 insertar despues del input el span con el error
+         */
         document.querySelector(`#${key}`).insertAdjacentElement("afterend", span);
     }else{
-        //Si hay un SPAN, actualiza su texto. El SPAN siempre será el último elemento
+        //Si hay un SPAN, actualiza su texto. Si existe SPAN siempre será el último elemento
         padre.lastElementChild.textContent = texto;
     }
 }

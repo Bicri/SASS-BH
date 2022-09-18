@@ -376,6 +376,10 @@ ul {
   margin: 0 0 0 3rem;
 }
 
+textarea {
+  resize: none;
+}
+
 .header {
   padding: 1.3rem 0;
   background-color: #212529;
@@ -562,7 +566,7 @@ ul {
 }
 
 .nosotros {
-  padding: 10rem 0 2rem 0;
+  padding: 10rem 0 10rem 0;
   background-image: url("../img/bg.png");
   background-repeat: no-repeat;
   background-size: cover;
@@ -657,7 +661,7 @@ ul {
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
-  padding: 8rem 0 10rem 0;
+  padding: 0 0 10rem 0;
 }
 .servicios__aval {
   background-color: #212529;
@@ -876,6 +880,15 @@ ul {
 }
 .contacto__sociales {
   margin-top: 5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1.5rem;
+}
+.contacto__link {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
 }
 
 .formulario {
@@ -885,7 +898,7 @@ ul {
   padding: 3rem;
   position: relative;
   width: 100%;
-  max-width: 650px;
+  max-width: 580px;
   height: 500px;
   display: flex;
   flex-direction: column;
@@ -939,5 +952,46 @@ ul {
 .formulario__submit:hover {
   color: #800080;
   background-color: #FFFFFF;
+}
+
+.footer {
+  background-color: #212529;
+  color: #FFFFFF;
+}
+.footer__contenedor {
+  max-width: 120rem;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+@media (min-width: 768px) {
+  .footer__contenedor {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1fr;
+  }
+}
+.footer__logo {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.footer__link {
+  display: block;
+  width: 30px;
+}
+.footer__contactanos {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+}
+.footer__contactanos span {
+  text-align: center;
+}
+.footer__contactanos a {
+  color: #FFFFFF;
 }
 /*# sourceMappingURL=app.css.map */

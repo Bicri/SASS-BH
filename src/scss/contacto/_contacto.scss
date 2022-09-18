@@ -28,5 +28,19 @@
 
     &__sociales{
         margin-top: 5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 1.5rem;
+
     }
+
+
+    &__link{
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    //overflow-wrap: break-word;
 }
