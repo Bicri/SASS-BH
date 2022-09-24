@@ -194,8 +194,24 @@ function enviarFormulario(e){
         return;
     }
 
-    console.log(datos);
-    crearModal();
+
+    //console.log(datos);
+    //crearModal();
+    enviarCorreo(datos)
+    .then(response =>{
+        console.log(response);
+        if (response!="Correo enviado con exito")
+        {
+          throw { status: response.status, statusText: response.statusText }
+        }else{
+          console.log("fin")
+        }
+    })
+    .catch((err) => {
+        const error = err.status + " " + err.statusText + " No se envió el mensaje";
+        console.log(error);
+    })
+    
 }
 
 function validarDatos(datos){
@@ -287,6 +303,27 @@ function recortarAnumeros(e){
 function soloNumeros(caracter){
     return numerosRegex.test(caracter);
 }
+
+//-- ENVIAR CORREO -----------------------------------------------------------
+
+const enviarCorreo = async (datos) => {
+    try {
+        
+      const resp = await fetch("php/email.php", {
+        method: "POST", // or 'PUT'
+        body: datos
+      });
+      
+      console.log(resp);
+
+      const respuestajson = await resp.json();
+      
+      return respuestajson;
+    } catch (error) {
+      return error;
+    }
+  };
+//-----------------------------------------------------------------------------
 
 //-- CREAR MODAL --------------------------------
 
