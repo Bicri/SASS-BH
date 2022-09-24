@@ -1,0 +1,58 @@
+@use '../base/variables' as v;
+@use '../base/mixins' as m;
+
+.modal{
+    // opacity: 0;
+    // visibility: hidden;
+
+    position: fixed;
+    z-index: 20;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0,0.5);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &__cuerpo{
+        width: 95%;
+        max-width: 70rem;
+        height: 50%;
+        border-radius: 2%;
+        background-color: v.$blanco;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        
+        align-items: center;
+        position: relative;
+        transition: transform 1s;
+        transform: translateY(-200%);
+    }
+
+    &__header{
+        display: block;
+        width: 90%;
+        margin: 2rem 0;
+
+        font-weight: bold;
+        font-size: 30px;
+    }
+
+    &__cerrar{
+        @include m.boton();
+        width: 50%;
+
+        padding: 0.5rem 1rem;
+        font-size: 25px;
+    }
+
+}
+
+
+// .modal-close{
+//     transform: translateY(-200%);
+// }

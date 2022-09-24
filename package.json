@@ -1,24 +1,33 @@
 {
   "name": "cafeteria",
   "version": "1.0.0",
-  "description": "Aprendiendo SASS y gulp",
-  "main": "index.js",
+  "description": "Salud y belleza con SASS",
+  "main": "gulpfile.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Isaac Bicri",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bicri/SASS-BH.git"
+  },
+  "author": "Bicri",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Bicri/SASS-BH/issues"
+  },
+  "homepage": "https://github.com/Bicri/SASS-BH#readme",
   "devDependencies": {
-    "autoprefixer": "^10.4.8",
+    "autoprefixer": "^10.4.12",
     "cssnano": "^5.1.13",
-    "gulp": "^4.0.0",
+    "gulp": "^4.0.2",
     "gulp-avif": "^1.1.1",
     "gulp-imagemin": "^7.1.0",
     "gulp-postcss": "^9.0.1",
     "gulp-sass": "^5.1.0",
     "gulp-sourcemaps": "^3.0.0",
     "gulp-webp": "^4.0.1",
-    "sass": "^1.54.4"
+    "postcss": "^8.4.16",
+    "sass": "^1.55.0"
   },
   "browserslist": [
     "last 1 version",

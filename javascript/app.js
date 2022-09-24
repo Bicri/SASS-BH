@@ -195,6 +195,7 @@ function enviarFormulario(e){
     }
 
     console.log(datos);
+    crearModal();
 }
 
 function validarDatos(datos){
@@ -285,6 +286,40 @@ function recortarAnumeros(e){
 
 function soloNumeros(caracter){
     return numerosRegex.test(caracter);
+}
+
+//-- CREAR MODAL --------------------------------
+
+function crearModal(){
+    const modal = document.createElement("div");
+    modal.classList.add("modal");
+
+    const modalCuerpo = document.createElement("div");
+    modalCuerpo.classList.add("modal__cuerpo");
+
+    const header = document.createElement("p");
+    header.classList.add("modal__header");
+    header.textContent = "Procesando"
+
+    const skchase = document.createElement("div");
+    skchase.classList.add("sk-chase");
+
+    for(let i=0; i<6; i++){
+        const chasedot = document.createElement("div");
+        chasedot.classList.add("sk-chase-dot");
+        skchase.appendChild(chasedot);
+    }
+
+    modal.appendChild(modalCuerpo);
+    modalCuerpo.appendChild(header);
+    modalCuerpo.appendChild(skchase);
+
+    document.querySelector("#contacto").insertAdjacentElement("afterend",modal);
+
+    setTimeout(() => {
+        modalCuerpo.style.transform = "translateY(0)";
+    }, 10);
+
 }
 
 
