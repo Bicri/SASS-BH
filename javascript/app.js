@@ -184,6 +184,22 @@ formulario.addEventListener("keydown", (e) =>{
     }   
 })
 
+// const enviarCorreo = async (formulario) => {
+//     try {
+        
+//       const resp = await fetch("php/email2.php", {
+//         method: "POST", // or 'PUT'
+//         body: formulario,
+//       });
+//       if (!resp.ok)
+//         throw { status: resp.status, statusText: resp.statusText };
+//       const respuestajson = await resp.json();
+//       return respuestajson;
+//     } catch (error) {
+//       return error;
+//     }
+//   };
+
 function enviarFormulario(e){
     e.preventDefault();
 
@@ -194,23 +210,26 @@ function enviarFormulario(e){
         return;
     }
 
+    crearModal(); //Modal en espera
 
-    //console.log(datos);
-    //crearModal();
-    enviarCorreo(datos)
-    .then(response =>{
-        console.log(response);
-        if (response!="Correo enviado con exito")
-        {
-          throw { status: response.status, statusText: response.statusText }
-        }else{
-          console.log("fin")
-        }
-    })
-    .catch((err) => {
-        const error = err.status + " " + err.statusText + " No se envió el mensaje";
-        console.log(error);
-    })
+    // enviarCorreo(new FormData(formulario))
+    //   .then((response) => {      
+    //     console.log(response);
+    //     respuestaModal("Enviado", "El correo se ha enviado exitosamente");
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     respuestaModal("Error", "El servicio no se encuentra disponible");
+    //   });
+    // console.log(enviarCorreo(new FormData(formulario)));
+    enviarEmail(new FormData(formulario))
+        .then(response =>{
+            if(response === "Correo enviado con exito"){respuestaModal("Enviado", "El correo se ha enviado exitosamente");}
+            else{respuestaModal("Error", "El servicio no se encuentra disponible");}
+        })
+        .catch(error =>{
+            console.log("error fetch")
+        })
     
 }
 
@@ -305,24 +324,19 @@ function soloNumeros(caracter){
 }
 
 //-- ENVIAR CORREO -----------------------------------------------------------
-
-const enviarCorreo = async (datos) => {
+async function enviarEmail(datos){
     try {
-        
-      const resp = await fetch("php/email.php", {
-        method: "POST", // or 'PUT'
-        body: datos
-      });
-      
-      console.log(resp);
-
-      const respuestajson = await resp.json();
-      
-      return respuestajson;
+        const response = await fetch("php/email.php", {
+            method: "POST", // or 'PUT'
+            body: datos,
+        });
+        if(response.ok){return await response.json()}
+        else{return "ERROR"}
     } catch (error) {
-      return error;
+        return error;
     }
-  };
+}
+
 //-----------------------------------------------------------------------------
 
 //-- CREAR MODAL --------------------------------
@@ -357,6 +371,31 @@ function crearModal(){
         modalCuerpo.style.transform = "translateY(0)";
     }, 10);
 
+}
+
+function respuestaModal(titulo, texto){
+    document.querySelector(".sk-chase").remove();
+    document.querySelector(".modal__header").textContent = titulo;
+    
+    const respuesta = document.createElement("p");
+    respuesta.classList.add("modal__respuesta");
+    respuesta.textContent = texto;
+
+    const cierre = document.createElement("button");
+    cierre.classList.add("modal__cerrar");
+    cierre.textContent = "Cerrar";
+    cierre.onclick = ()=>{cerrarModal()};
+
+    document.querySelector(".modal__header").insertAdjacentElement("afterend",respuesta);
+    respuesta.insertAdjacentElement("afterend",cierre);
+}
+
+function cerrarModal(){
+    document.querySelector(".modal__cuerpo").style.transform = "translateY(-200%)";
+    setTimeout(() => {
+        document.querySelector(".modal").remove();
+    }, 500);
+    formulario.reset();
 }
 
 

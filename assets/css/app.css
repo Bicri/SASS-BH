@@ -1031,6 +1031,11 @@ textarea {
   font-weight: bold;
   font-size: 30px;
 }
+.modal__respuesta {
+  margin: 3rem 0 5rem 0;
+  font-size: 20px;
+  text-align: center;
+}
 .modal__cerrar {
   border: 2px solid #9b84ab;
   padding: 20px 80px;
