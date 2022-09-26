@@ -165,6 +165,23 @@ function moverIzqCards(elem, unit) {
 
 //--- INICIO FORMULARIO ----------------------------------------------------------------------------------------------
 
+//-- ENVIAR CORREO -----------------------------------------------------------
+async function enviarEmail(datos){ //Esta función se comunica con la API de php
+    
+    try {
+        const response = await fetch("php/email.php", {
+            method: "POST", // or 'PUT'
+            body: datos,
+        });
+        if(response.ok){return await response.json()} //Si fue correcto --> devuelve una promesa
+        else{return "ERROR"} //devuelve un error si fue incorrecto
+    } catch (error) {
+        return error;
+    }
+}
+//-----------------------------------------------------------------------------
+
+//--- Variables de la sección formulario
 const formulario = document.querySelector('#formulario');
 const emailRegex = /^(?:[^<>()[\].,;:\s@"]+(\.[^<>()[\].,;:\s@"]+)*|"[^\n"]+")@(?:[^<>()[\].,;:\s@"]+\.)+[^<>()[\]\.,;:\s@"]{2,63}$/i;
 const numerosRegex = /^[0-9]$/; //Solo valida caracter NO PALABRAS
@@ -184,22 +201,6 @@ formulario.addEventListener("keydown", (e) =>{
     }   
 })
 
-// const enviarCorreo = async (formulario) => {
-//     try {
-        
-//       const resp = await fetch("php/email2.php", {
-//         method: "POST", // or 'PUT'
-//         body: formulario,
-//       });
-//       if (!resp.ok)
-//         throw { status: resp.status, statusText: resp.statusText };
-//       const respuestajson = await resp.json();
-//       return respuestajson;
-//     } catch (error) {
-//       return error;
-//     }
-//   };
-
 function enviarFormulario(e){
     e.preventDefault();
 
@@ -212,23 +213,12 @@ function enviarFormulario(e){
 
     crearModal(); //Modal en espera
 
-    // enviarCorreo(new FormData(formulario))
-    //   .then((response) => {      
-    //     console.log(response);
-    //     respuestaModal("Enviado", "El correo se ha enviado exitosamente");
-    //   })
-    //   .catch((err) => {
-    //     console.log(err);
-    //     respuestaModal("Error", "El servicio no se encuentra disponible");
-    //   });
-    // console.log(enviarCorreo(new FormData(formulario)));
-    enviarEmail(new FormData(formulario))
+    enviarEmail(new FormData(formulario)) //devuelve una promesa
         .then(response =>{
-            if(response === "Correo enviado con exito"){respuestaModal("Enviado", "El correo se ha enviado exitosamente");}
+            //Muestra la info en el modal dependiendo de la respuesta
+            if(response === "Correo enviado con exito") //Esta respuesta la devuelve la API PHP
+            {respuestaModal("Enviado", "El correo se ha enviado exitosamente");}
             else{respuestaModal("Error", "El servicio no se encuentra disponible");}
-        })
-        .catch(error =>{
-            console.log("error fetch")
         })
     
 }
@@ -315,7 +305,7 @@ function crearSpan(key, texto){
 function recortarAnumeros(e){
     if(!(soloNumeros(e.data))){
         //Si la tecla presionada no es de un numero --> recortala
-        e.target.value = e.target.value.slice(0, e.target.value.length - 1);     
+        e.target.value = e.target.value.slice(0, e.target.value.length - 1); //e.target indica el input en cuestión 
     }
 }
 
@@ -323,50 +313,43 @@ function soloNumeros(caracter){
     return numerosRegex.test(caracter);
 }
 
-//-- ENVIAR CORREO -----------------------------------------------------------
-async function enviarEmail(datos){
-    try {
-        const response = await fetch("php/email.php", {
-            method: "POST", // or 'PUT'
-            body: datos,
-        });
-        if(response.ok){return await response.json()}
-        else{return "ERROR"}
-    } catch (error) {
-        return error;
-    }
-}
-
-//-----------------------------------------------------------------------------
 
 //-- CREAR MODAL --------------------------------
 
 function crearModal(){
+    //Crea el fondo negro
     const modal = document.createElement("div");
     modal.classList.add("modal");
 
+    //Crea el contenedor de la informacion
     const modalCuerpo = document.createElement("div");
     modalCuerpo.classList.add("modal__cuerpo");
 
+    //Crea el titulo
     const header = document.createElement("p");
     header.classList.add("modal__header");
     header.textContent = "Procesando"
 
+    //crea el contenedor del spinner
     const skchase = document.createElement("div");
     skchase.classList.add("sk-chase");
 
+    //crea los circulos del spinner
     for(let i=0; i<6; i++){
         const chasedot = document.createElement("div");
         chasedot.classList.add("sk-chase-dot");
         skchase.appendChild(chasedot);
     }
 
+    //Inseta dentro del modal
     modal.appendChild(modalCuerpo);
     modalCuerpo.appendChild(header);
     modalCuerpo.appendChild(skchase);
 
+    //inserta en el DOM
     document.querySelector("#contacto").insertAdjacentElement("afterend",modal);
 
+    //Animación para el contenedor de la informacion
     setTimeout(() => {
         modalCuerpo.style.transform = "translateY(0)";
     }, 10);
@@ -374,28 +357,35 @@ function crearModal(){
 }
 
 function respuestaModal(titulo, texto){
+    //Elimina el spinner
     document.querySelector(".sk-chase").remove();
     document.querySelector(".modal__header").textContent = titulo;
     
+    //Crea el parrafo de respuesta
     const respuesta = document.createElement("p");
     respuesta.classList.add("modal__respuesta");
     respuesta.textContent = texto;
 
+    //Crea el boton para cerrar el modal
     const cierre = document.createElement("button");
     cierre.classList.add("modal__cerrar");
     cierre.textContent = "Cerrar";
     cierre.onclick = ()=>{cerrarModal()};
 
+    //Inserta la respuesta despues del titulo
     document.querySelector(".modal__header").insertAdjacentElement("afterend",respuesta);
-    respuesta.insertAdjacentElement("afterend",cierre);
+    respuesta.insertAdjacentElement("afterend",cierre); //inserta el boton despues de la respuesta
 }
 
 function cerrarModal(){
+    //Animación para cerrar modal
     document.querySelector(".modal__cuerpo").style.transform = "translateY(-200%)";
+
+    //Pequeño retraso para cerrar el modal sin afectar la linea anterior
     setTimeout(() => {
         document.querySelector(".modal").remove();
     }, 500);
-    formulario.reset();
+    formulario.reset(); //formatea los datos
 }
 
 

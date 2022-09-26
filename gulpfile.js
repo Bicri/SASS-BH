@@ -23,8 +23,8 @@ function css(done){
 
     src('src/scss/app.scss')
         .pipe( sourcemaps.init() )
-        .pipe(sass(/*{outputStyle: 'compressed'}*/) )
-        // .pipe( postcss( [ autoprefixer(), cssnano() ] ) )
+        //.pipe(sass(/*{outputStyle: 'compressed'}*/) ) //Cpmentar la de abajo y descomentar esta para ver css no minificado
+        .pipe( postcss( [ autoprefixer(), cssnano() ] ) ) //Minifica CSS
         .pipe( postcss( [ autoprefixer() ] ) )
         .pipe( sourcemaps.write('.') )
         .pipe( dest('assets/css') )

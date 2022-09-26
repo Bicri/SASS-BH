@@ -14,7 +14,7 @@ include("../Mailer/src/Exception.php");
         $body = '<!DOCTYPE html><html lang="es"><head><meta charset="UTF-8"></head><body>'.'<strong>Datos de cliente:</strong><br><br>'.'Nombre Completo: '.$nombreCompleto.'<br>'.'Teléfono: '.$telefono.'<br>'.'Email: '.$email.'<br>'.'Comentario: '.$comentario.'<br>'.'</body></html>';
         $remitente = "isaac.bicri@gmail.com";                             //Escribir aqui el correo de donde se enviarán
         $nombre = "Formulario - BH Salud y Belleza";    //Nombre del remitente
-        $contrasena = "vqwoqjxpphvflsga";                               //Escribir contraseña del correo remitente
+        $contrasena = "";                               //Escribir contraseña del correo remitente
         $host = "smtp.gmail.com";                       //Servidor SMPT a utilizar (coincidir con dominio de remitente)
         $port = "587";                                  //o 465
         $SMTPAuth = "login";
@@ -43,7 +43,7 @@ include("../Mailer/src/Exception.php");
 
             if($mail->send()) {
                 //echo "Correo enviado con éxito"
-                echo json_encode("Correo enviado con exito");
+                echo json_encode("Correo enviado con exito"); //Respuesta de la API en caso de enviar el correo
             }
         }catch(Exception $e){
             //error_log("Mailer:no se pudo enviar el correo ");
