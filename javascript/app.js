@@ -26,7 +26,7 @@
             setAltura(header, ( getAltura(nav) + alturaInicial) );
             setTimeout(() => {
                 nav.classList.toggle('nav--collapsed');
-            }, 300);
+            }, 400);
         }else{
             header.setAttribute("data-collapsed", false);
             setAltura(header, alturaInicial);

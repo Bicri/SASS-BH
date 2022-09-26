@@ -10,10 +10,12 @@
     top: 0;
     right: 0;
     z-index: 10;
-    height: auto !important;
+    min-height: 106px;
 
     @include m.tablet {
+        min-height: unset;
         height: auto !important;
+        
 
         &__contenedor{
             display: flex;
