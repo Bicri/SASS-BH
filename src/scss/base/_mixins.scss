@@ -37,6 +37,9 @@
     min-width: 140px;
     text-align: center;
 
+    position: relative;
+    z-index: 1;
+
     &:hover{
         color: v.$purpuraStrong;
         background-color: v.$blanco;

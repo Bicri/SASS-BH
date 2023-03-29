@@ -1,0 +1,21 @@
+#instalar gulp globalmente
+npm install --global gulp-cli
+
+#En windows si gulp -v da Error
+Set-ExecutionPolicy RemoteSigned -Scope LocalMachine
+
+#Comprobar paso anterior
+Get-ExecutionPolicy -List
+
+#instalar gulp localmente y dependencias
+npm i
+
+#Correr gulp
+gulp #por primera vez
+gulp dev_watch #En modo desarrollo
+abrir con live server
+
+
+#Construir gulp
+
+
