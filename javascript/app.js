@@ -388,5 +388,20 @@ function cerrarModal(){
     formulario.reset(); //formatea los datos
 }
 
+//-- Fin Modal ---------------------------------------
+
+//-- Menú desplegable ---------------------------------------
+
+const activador = document.querySelector(".desplegable__activate");
+
+const whatsApp = document.querySelector(".desplegable__link--whatsApp");
+
+activador.addEventListener('click', muestraContactos);
+
+function muestraContactos(){
+    whatsApp.classList.toggle("desplegable__link--aparece");
+    activador.classList.toggle("desplegable__activate--rotate");
+}
+
 
 

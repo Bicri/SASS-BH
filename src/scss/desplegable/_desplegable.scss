@@ -2,7 +2,7 @@
 @use "../base/mixins" as m;
 
 .desplegable {
-  background-color: blue;
+  background-color: transparent;
   position: fixed;
   top: 15vh;
   right: 0;
@@ -19,20 +19,83 @@
 
   padding: 2rem;
 
+  @include m.tablet {
+    top: 12vh;
+    height: 88vh;
+    width: 15%;
+    padding: 1rem;
+  }
+
   &__container {
     position: relative;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
     align-items: center;
+    height: 100%;
+  }
+
+  &__activate {
+    position: relative;
+    z-index: 1;
+
+    border-radius: 50%;
+    width: 6rem;
+    height: 6rem;
+    border: none;
+    background-color: v.$purpuraStrong;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: transform 0.5s ease-in-out;
+
+    &--rotate {
+      transform: rotate(-90deg);
+    }
+
+    @include m.tablet {
+      display: none;
+    }
   }
 
   &__link {
-    width: 8rem;
-    height: 8rem;
-    display: block;
+    background-color: v.$secundario;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5rem;
+    height: 5rem;
     position: absolute;
-    top: -9rem;
-    z-index: 20;
+    bottom: 0;
+    z-index: 0;
+
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.5s ease;
+
+    
+
+    &--aparece {
+      pointer-events: all;
+      opacity: 1;
+      bottom: 15%;
+    }
+
+    @include m.tablet {
+      opacity: 1;
+      pointer-events: all;
+      width: 7rem;
+      height: 7rem;
+      bottom: 0;
+
+      & img{
+        width: 4.5rem;
+        height: 4.5rem;
+      }
+    }
+
+
   }
 }
