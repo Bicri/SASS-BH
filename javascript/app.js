@@ -49,33 +49,81 @@
 
 //-- SECCION DEL CAROUSEL ---------------------------------------
 
-    const slides = document.querySelectorAll('.carousel__slide');
+const slider = document.querySelector('.carousel__slider');
+const sliderElements = document.querySelectorAll('.carousel__slide');
+const rootStyles = document.documentElement.style;
+
+let slideCounter = 0;
+let isInTransition = false;
+
+const DIRECTION = {
+  RIGHT: 'RIGHT',
+  LEFT: 'LEFT'
+};
+//Obtener translateX
+const getTransformValue = () => Number(rootStyles.getPropertyValue('--slide-transform').replace('px', ''));
+
+const reorderSlide = () => {
+  // 1.- Obtener el transalteX
+  const transformValue = getTransformValue();
+  // 2.- Establecer transition en none
+  rootStyles.setProperty('--transition', 'none');
+
+  //Si llegó al final
+  if (slideCounter === sliderElements.length - 1) {
+    //Insertar en el ultimo hijo, al primer hijo
+    slider.appendChild(slider.firstElementChild);
+
+    //Establecer el translateX = tamaño de caja + arreglodesliders[contador].scrollwidth px
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue + sliderElements[slideCounter].scrollWidth}px`
+    );
+
+    //Restar contador
+    slideCounter--;
+  } else if (slideCounter === 0) {
+    slider.prepend(slider.lastElementChild);
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue - sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter++;
+  }
+
+  isInTransition = false;
+};
+
+const moveSlide = direction => {
+  if (isInTransition) return;
+  const transformValue = getTransformValue();
+  rootStyles.setProperty('--transition', 'transform 1s');
+  isInTransition = true;
+  if (direction === DIRECTION.LEFT) {
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue + sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter--;
+  } else if (direction === DIRECTION.RIGHT) {
+    rootStyles.setProperty(
+      '--slide-transform',
+      `${transformValue - sliderElements[slideCounter].scrollWidth}px`
+    );
+    slideCounter++;
+  }
+};
 
 
-    let slideActual = 0;
-    let slidesTotal = slides.length - 1 ;
+function reproducirSlides(){
+    setInterval(() => {
+      moveSlide(DIRECTION.RIGHT)
+    }, 3500);
+}
 
-    console.log(slides);
+slider.addEventListener('transitionend', reorderSlide);
 
-    function siguienteImagen(){
-
-        slideActual = slideActual === slidesTotal ? 0 : slideActual+1;
-
-        moverCarousel(slides, 100, slideActual);
-    }
-
-    function moverCarousel(carousel, tamX, posicionActual){
-        carousel.forEach( (slide, i) => {
-            slide.style.transform = `translateX(${(tamX * (i-posicionActual))}%)`;
-        } )
-    }
-
-    function reproducirSlides(){
-        setInterval(() => {
-            siguienteImagen();
-        }, 3500);
-    }
-
+reorderSlide();
 
 //-- FIN CAROUSEL -----------------------------------------------
 
