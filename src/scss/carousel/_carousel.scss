@@ -1,38 +1,39 @@
-
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
 $altura: 85vh;
 
-.carousel{
+.carousel {
+  &__slider {
+    width: 100%;
+    position: relative;
+    height: 85vh; //135vh
+    overflow: hidden;
 
+    @include m.tablet {
+      height: 100vh; //135vh
+    }
+    @include m.desktop {
+      height: 135vh; //135vh
+    }
+  }
 
-    &__slider{
-        width: 100%;
-        position: relative;
-        height: 88vh;
-        overflow: hidden;
+  &__slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    transition-property: transform;
+    transition-duration: 0.5s;
+    transition-timing-function: ease;
 
+    &:not(&:first-of-type) {
+      transform: translateX(100%);
     }
 
-
-    &__slide{
-        width: 100%;
-        height: 100%;
-        position: absolute;
-        transition-property: transform;
-        transition-duration: 0.5s;
-        transition-timing-function: ease;
-        
-        &:not(&:first-of-type){
-            transform: translateX(100%);
-        }
+    & img {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
-
-    &__img{
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
-
+  }
 }

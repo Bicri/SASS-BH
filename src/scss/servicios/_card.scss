@@ -1,92 +1,117 @@
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
+.card {
+  background-color: white;
+  flex: 0 0 auto;
+  margin-left: 15px;
+  max-width: 100%;
+  padding: 2rem;
+  height: v.$altura;
+  margin-bottom: 1rem;
 
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
-.card{
-    background-color: white;
-    flex: 0 0 auto;
-    margin-left: 15px;
-    max-width: 100%;
-    padding: 2rem;
-    height: v.$altura;
-    margin-bottom: 1rem;
+  &:last-child {
+    margin-right: 15px;
+  }
 
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  @include m.tablet {
+    max-width: 49%;
+  }
 
+  @include m.laptop {
+    max-width: 42rem;
+  }
 
-    &:last-child{
-        margin-right: 15px;
+  &__header {
+    height: 50%;
+  }
+
+  &__img {
+    object-fit: cover;
+    width: 23rem;
+    height: 23rem;
+    margin: 0 auto;
+    border-radius: 50%;
+
+    @include m.telefono {
+      height: 30rem;
+      width: 30rem;
     }
+  }
+
+  &__contenido {
+    @include m.telefono {
+      margin-top: 5rem;
+    }
+  }
+
+  &__titulo {
+    margin: 2rem 0;
+    text-align: center;
+    font-size: 18px;
+  }
+
+  &__texto {
+    margin: 0;
+    line-height: 1.5;
+
+    &--credenciales {
+      display: flex;
+      flex-direction: column;
+      span {
+        font-size: 14.5px;
+      }
+    }
+  }
+
+  //---Cards en servicios integrales
+  &--integrales {
+    max-width: 100%;
+
+    min-height: 76rem;
 
     @include m.tablet {
-        max-width: 49%;
+      min-height: 70rem;
+      max-height: 87rem;
     }
 
-    @include m.laptop{
-        max-width: 42rem;
+    margin-left: 0;
+
+    &:last-of-type {
+      margin-right: 0;
     }
 
-    &__header{
-        height: 50%;
+    & .card__contenido {
+      margin-top: 0;
     }
 
-    &__img{
-        max-width: 300px;
-        margin: 0 auto;
-        border-radius: 50%;
+    &__header {
+      height: unset;
+      max-height: unset;
+
+      @include m.tablet {
+        height: 45%;
+        max-height: 320px;
+      }
     }
 
-    &__titulo{
-        margin: 2rem 0;
-        text-align: center;
-        font-size: 18px;
+    &__img {
+      @include m.laptop {
+        height: 27rem;
+        width: 27rem;
+      }
     }
 
-    &__texto{
-        margin: 0;
-        line-height: 1.5;
-
-        &--credenciales{
-            display: flex;
-            flex-direction: column;
-            span{
-                font-size: 14.5px;
-            }
-        }
+    & p {
+      margin: 0 0 1rem 0;
+      font-size: 14.5px;
     }
 
-    
-
-//---Cards en servicios integrales
-    &--integrales{
-        height: 85rem;
-        margin-left: 0;
-        max-width: 100%;
-
-        &:last-of-type{
-            margin-right: 0;
-        }
-
-        &__header{
-            height: 45%;
-            max-height: 320px;
-        }
-
-        &__img{
-            max-width: 320px;
-        }
-
-        & p{
-            margin: 0 0 1rem 0;
-            font-size: 14.5px;
-        }
-
-        &__titulo{
-            text-align: left;
-        }
-
-        
-
+    &__titulo {
+      text-align: left;
+      margin-top: unset;
     }
+  }
 }

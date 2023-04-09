@@ -1,48 +1,57 @@
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
-.footer{
-    background-color: v.$negroGris;
-    color: v.$blanco;
+.footer {
+  background-color: v.$negroGris;
+  color: v.$blanco;
 
-    &__contenedor{
-        max-width: 120rem;
-        padding: 2.5rem;
-        display: flex;
-        flex-direction: column;
-        gap: 2.5rem;
+  &__contenedor {
+    max-width: 120rem;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
 
-        @include m.tablet {
-            display: grid;
-            grid-template-columns: 1fr 2fr 1fr;
-        }
+    @include m.tablet {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+    }
+  }
+
+  &__logo {
+    & a {
+      display: block;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
 
-    &__logo{
-        width: 100%;
-        display: flex;
-        justify-content: center;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__link {
+    display: block;
+    width: 30px;
+  }
+
+  &__contactanos {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    & span {
+      text-align: center;
     }
 
-    &__link{
-        display: block;
-        width: 30px;
+    & a {
+      color: v.$blanco;
     }
-
-    &__contactanos{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 1rem;
-        width: 100%;
-
-        & span{
-            text-align: center;
-        }
-
-        & a{
-            color: v.$blanco;
-        }
-    }
+  }
 }

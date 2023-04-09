@@ -1,98 +1,126 @@
-@use '../base/variables' as v;
-@use '../base/mixins' as m;
+@use "../base/variables" as v;
+@use "../base/mixins" as m;
 
-.nosotros{
-    padding: 10rem 0 10rem 0;
-    background-image: url("../img/bg.png");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center center;
+.nosotros {
+  padding: 10rem 0 10rem 0;
+  background-image: url("../img/bg.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
 
-    &__header{
-        font-size: 5.5rem;
+  &__header {
+    font-size: 5.5rem;
+    text-align: center;
+    padding: 0;
+    margin: 0 0 4rem 0;
+
+    @include m.tablet {
+      font-size: 9rem;
+    }
+  }
+
+  &__BH {
+    @include m.laptop {
+      display: flex;
+      flex-direction: row-reverse;
+      gap: 2rem;
+    }
+  }
+
+  &__titulo {
+    font-size: 2rem;
+    margin: 0 0 1rem 0;
+    text-align: center;
+    font-family: v.$fuenteSecundaria;
+
+    span {
+      display: block;
+    }
+
+    @include m.tablet {
+      font-size: 3rem;
+    }
+  }
+
+  &__texto {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.5;
+
+    @include m.desktop {
+      line-height: 2;
+    }
+
+    span {
+      text-align: left;
+      line-height: 1.5;
+
+      @include m.tablet {
         text-align: center;
-        padding: 0;
-        margin: 0 0 4rem 0;
-
-        @include m.tablet {
-            font-size: 9rem;
-        }
+      }
+      @include m.desktop {
+        text-align: right;
+      }
     }
+  }
 
-    &__BH{
-        @include m.laptop {
-            display: flex;
-            flex-direction: row-reverse;
-            gap: 2rem;
-        }
+  &__collage {
+    display: flex;
+    align-items: center;
+    img {
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-top: 2.5rem;
+
+      @include m.laptop {
+        height: 55%;
+        margin-top: unset;
+      }
     }
-
-    &__titulo{
-        font-size: 2rem;
-        margin: 0 0 1rem 0;
-        text-align: center;
-        font-family: v.$fuenteSecundaria;
-
-        span{
-            display: block;
-        }
-
-        @include m.tablet {
-            font-size: 3rem;
-        }
+    @include m.laptop {
+      width: 105%;
     }
+  }
 
-    &__texto{
-        margin: 1rem 0;
-        display: flex;
-        flex-direction: column;
-
-        span{
-            text-align: left;
-            line-height: 1.5;
-
-            @include m.tablet {
-                text-align: center;
-            }
-            @include m.desktop {
-                text-align: right;
-            }
-        }
+  &__contenido {
+    @include m.laptop {
+      width: 90%;
     }
+  }
 
-    &__collage {
-        img{
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            height: 50rem;
-        }
-        @include m.laptop {
-            width: 150%;
-        }
-        
-        
+  &__ivonne {
+    margin-top: 5rem;
+    @include m.desktop {
+      display: grid;
+      grid-template-columns: 2fr 1.3fr;
+      gap: 1rem;
     }
+  }
 
-    &__ivonne{
-        margin-top: 5rem;
-        @include m.desktop {
-            display: grid;
-            grid-template-columns: 2fr 1.3fr;
-            gap: 1rem;
-        }
+  &__imagen {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      border-radius: 50%;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      margin-top: 2.5rem;
+
+      max-height: 26rem;
+      min-width: 26rem;
+      @include m.telefono {
+        max-height: unset;
+        min-width: unset;
+        height: 45rem;
+        width: 45rem;
+      }
+      @include m.desktop {
+        margin-top: unset;
+      }
     }
-
-    &__imagen{
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        img{
-            border-radius: 50%;
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            width: 100%;
-            max-width: 50rem;
-            max-height: 50rem;
-        }
-    }
+  }
 }

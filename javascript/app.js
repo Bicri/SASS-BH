@@ -55,6 +55,7 @@
     let slideActual = 0;
     let slidesTotal = slides.length - 1 ;
 
+    console.log(slides);
 
     function siguienteImagen(){
 
